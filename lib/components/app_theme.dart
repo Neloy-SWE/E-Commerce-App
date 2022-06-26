@@ -29,6 +29,16 @@ class AppTheme {
         fontSize: 30,
         color: MyColor.primaryColor,
       ),
+      headline3: TextStyle(
+        fontFamily: AllText.bold,
+        fontSize: 40,
+        color: Colors.black,
+      ),
+      headline4:TextStyle(
+        fontFamily: AllText.regular,
+        fontSize: 10,
+        color: MyColor.errorColor,
+      ),
       bodyText1: TextStyle(
         fontFamily: AllText.regular,
         fontSize: 15,

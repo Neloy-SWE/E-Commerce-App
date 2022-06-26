@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:my_ecommerce/utils/constants.dart';
 import 'package:my_ecommerce/utils/strings.dart';
 import '../utils/colors.dart';
+import 'auth/login.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -11,6 +14,17 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
+  @override
+  void initState() {
+    Timer(const Duration(seconds: 2), () {
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (builder) => const LogIn()));
+    });
+    super.initState();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,6 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
         backgroundColor: Colors.white,
       ),
       body: ListView(
+        physics: const NeverScrollableScrollPhysics(),
         padding: Constants.paddingAll15,
         children: [
           // welcome image
