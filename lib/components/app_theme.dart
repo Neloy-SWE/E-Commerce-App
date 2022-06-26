@@ -35,7 +35,7 @@ class AppTheme {
         color: Colors.black,
       ),
       headline4:TextStyle(
-        fontFamily: AllText.regular,
+        fontFamily: AllText.bold,
         fontSize: 10,
         color: MyColor.errorColor,
       ),
@@ -48,6 +48,11 @@ class AppTheme {
         fontFamily: AllText.regular,
         fontSize: 11,
         color: Colors.black,
+      ),
+      headline5: TextStyle(
+        fontFamily: AllText.bold,
+        fontSize: 15,
+        color: MyColor.primaryColor,
       ),
     ),
   );

@@ -19,7 +19,7 @@ class AllInput {
   }) {
     return TextFormField(
       validator: validatorFunction,
-      style: Theme.of(context).textTheme.headline4,
+      style: Theme.of(context).textTheme.bodyText1!.copyWith(color: MyColor.primaryColor),
       obscureText: secure,
       controller: controller,
       keyboardType: textInputType,
@@ -69,13 +69,12 @@ class AllInput {
         ),
         fillColor: fillColor,
         hintText: hint,
-        hintStyle: Theme.of(context).textTheme.headline4!.copyWith(
-              color: Colors.black54,
+        hintStyle: Theme.of(context).textTheme.bodyText1!.copyWith(
+              color: Colors.black26,
             ),
         labelText: label,
-        labelStyle: Theme.of(context).textTheme.headline4!.copyWith(
+        labelStyle: Theme.of(context).textTheme.bodyText1!.copyWith(
               color: MyColor.primaryColor,
-              fontSize: 9,
             ),
       ),
     );

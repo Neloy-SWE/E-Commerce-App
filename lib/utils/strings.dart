@@ -7,4 +7,9 @@ class AllText {
   static const String splashSubTitle = "A place of best products.";
   static const String copyrightLeads = "©leads";
   static const String login = "Login";
+  static const String email = "E-mail";
+  static const String emailHint = "hello@world.com...";
+  static const String password = "Password";
+  static const String passHint = "+-+-+-+-+";
+  static const String forgetPass = "Forget Password ?";
 }
