@@ -27,15 +27,11 @@ class _LogInState extends State<LogIn> {
     super.dispose();
   }
 
-  initSate() {}
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-      ),
+      appBar: AppBar(),
       body: ListView(
         padding: Constants.paddingAll15,
         children: [

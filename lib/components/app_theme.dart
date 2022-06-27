@@ -10,7 +10,7 @@ class AppTheme {
     // app bar
     appBarTheme: const AppBarTheme(
       elevation: 0,
-      color: AllColor.primaryColor,
+      color: Colors.white,
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.dark,

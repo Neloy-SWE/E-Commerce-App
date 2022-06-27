@@ -28,9 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-      ),
+      appBar: AppBar(),
       body: ListView(
         physics: const NeverScrollableScrollPhysics(),
         padding: Constants.paddingAll15,
