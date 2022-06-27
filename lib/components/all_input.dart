@@ -19,7 +19,10 @@ class AllInput {
   }) {
     return TextFormField(
       validator: validatorFunction,
-      style: Theme.of(context).textTheme.bodyText1!.copyWith(color: AllColor.primaryColor),
+      style: Theme.of(context)
+          .textTheme
+          .bodyText1!
+          .copyWith(color: AllColor.primaryColor),
       obscureText: secure,
       controller: controller,
       keyboardType: textInputType,

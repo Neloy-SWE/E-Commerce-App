@@ -55,6 +55,7 @@ class AppTheme {
         color: AllColor.primaryColor,
       ),
     ),
-    colorScheme: ColorScheme.fromSwatch().copyWith(secondary: AllColor.primaryColor),
+    colorScheme:
+        ColorScheme.fromSwatch().copyWith(secondary: AllColor.primaryColor),
   );
 }

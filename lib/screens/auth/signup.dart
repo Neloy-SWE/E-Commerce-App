@@ -183,7 +183,7 @@ class _SignUpState extends State<SignUp> {
   }
 
   void goToLogIn() {
-    Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (builder) => const LogIn()));
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (builder) => const LogIn()));
   }
 }
