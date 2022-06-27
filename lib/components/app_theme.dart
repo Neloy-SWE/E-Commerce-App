@@ -34,7 +34,7 @@ class AppTheme {
         fontSize: 40,
         color: Colors.black,
       ),
-      headline4:TextStyle(
+      headline4: TextStyle(
         fontFamily: AllText.bold,
         fontSize: 10,
         color: AllColor.errorColor,
@@ -55,5 +55,6 @@ class AppTheme {
         color: AllColor.primaryColor,
       ),
     ),
+    colorScheme: ColorScheme.fromSwatch().copyWith(secondary: AllColor.primaryColor),
   );
 }
