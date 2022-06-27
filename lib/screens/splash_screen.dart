@@ -61,7 +61,7 @@ class _SplashScreenState extends State<SplashScreen> {
             alignment: Alignment.center,
             child: CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation<Color>(
-                MyColor.primaryColor,
+                AllColor.primaryColor,
               ),
               strokeWidth: 5,
             ),

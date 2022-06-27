@@ -12,4 +12,5 @@ class AllText {
   static const String password = "Password";
   static const String passHint = "+-+-+-+-+";
   static const String forgetPass = "Forget Password ?";
+  static const String loginCap = "LOGIN";
 }

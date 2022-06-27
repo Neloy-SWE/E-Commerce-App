@@ -10,7 +10,7 @@ class AppTheme {
     // app bar
     appBarTheme: const AppBarTheme(
       elevation: 0,
-      color: MyColor.primaryColor,
+      color: AllColor.primaryColor,
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.dark,
@@ -27,7 +27,7 @@ class AppTheme {
       headline2: TextStyle(
         fontFamily: AllText.bold,
         fontSize: 30,
-        color: MyColor.primaryColor,
+        color: AllColor.primaryColor,
       ),
       headline3: TextStyle(
         fontFamily: AllText.bold,
@@ -37,7 +37,7 @@ class AppTheme {
       headline4:TextStyle(
         fontFamily: AllText.bold,
         fontSize: 10,
-        color: MyColor.errorColor,
+        color: AllColor.errorColor,
       ),
       bodyText1: TextStyle(
         fontFamily: AllText.regular,
@@ -52,7 +52,7 @@ class AppTheme {
       headline5: TextStyle(
         fontFamily: AllText.bold,
         fontSize: 15,
-        color: MyColor.primaryColor,
+        color: AllColor.primaryColor,
       ),
     ),
   );

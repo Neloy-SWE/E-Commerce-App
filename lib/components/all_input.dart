@@ -14,16 +14,16 @@ class AllInput {
     required TextEditingController controller,
     required TextInputType textInputType,
     required TextInputAction enterAction,
-    Color fillColor = MyColor.primaryColor,
+    Color fillColor = AllColor.primaryColor,
     Function? callbackFunction,
   }) {
     return TextFormField(
       validator: validatorFunction,
-      style: Theme.of(context).textTheme.bodyText1!.copyWith(color: MyColor.primaryColor),
+      style: Theme.of(context).textTheme.bodyText1!.copyWith(color: AllColor.primaryColor),
       obscureText: secure,
       controller: controller,
       keyboardType: textInputType,
-      cursorColor: MyColor.primaryColor,
+      cursorColor: AllColor.primaryColor,
       textInputAction: enterAction,
       onChanged: (value) {
         if (callbackFunction != null) {
@@ -36,11 +36,11 @@ class AllInput {
         alignLabelWithHint: true,
         prefixIcon: Icon(
           prefixIcon,
-          color: MyColor.primaryColor,
+          color: AllColor.primaryColor,
         ),
         suffixIcon: Icon(
           suffixIcon,
-          color: MyColor.primaryColor,
+          color: AllColor.primaryColor,
         ),
         suffix: suffixWidget,
         border: OutlineInputBorder(
@@ -48,11 +48,11 @@ class AllInput {
           borderRadius: BorderRadius.circular(7),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(width: 1, color: MyColor.primaryColor),
+          borderSide: const BorderSide(width: 1, color: AllColor.primaryColor),
           borderRadius: BorderRadius.circular(7),
         ),
         errorBorder: OutlineInputBorder(
-          borderSide: const BorderSide(width: 1, color: MyColor.errorColor),
+          borderSide: const BorderSide(width: 1, color: AllColor.errorColor),
           borderRadius: BorderRadius.circular(7),
         ),
         enabledBorder: OutlineInputBorder(
@@ -64,7 +64,7 @@ class AllInput {
           borderRadius: BorderRadius.circular(7),
         ),
         focusedErrorBorder: OutlineInputBorder(
-          borderSide: const BorderSide(width: 1, color: MyColor.errorColor),
+          borderSide: const BorderSide(width: 1, color: AllColor.errorColor),
           borderRadius: BorderRadius.circular(7),
         ),
         fillColor: fillColor,
@@ -74,7 +74,7 @@ class AllInput {
             ),
         labelText: label,
         labelStyle: Theme.of(context).textTheme.bodyText1!.copyWith(
-              color: MyColor.primaryColor,
+              color: AllColor.primaryColor,
             ),
       ),
     );
