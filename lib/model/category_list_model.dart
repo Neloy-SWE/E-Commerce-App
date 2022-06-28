@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final productListModel = productListModelFromMap(jsonString);
-
 import 'dart:convert';
 
 class CategoryListModel {
