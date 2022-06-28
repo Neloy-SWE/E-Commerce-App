@@ -3,4 +3,6 @@ class ApiResponseModel {
   int? statusCode;
 
   ApiResponseModel({required this.statusCode, this.message});
+
+
 }

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../api/api_response.dart';
+import '../../api/auth_api.dart';
 import '../../components/all_input.dart';
 import '../../components/buttons/general_button.dart';
+import '../../components/custom_snackbar.dart';
 import '../../utils/colors.dart';
 import '../../utils/constants.dart';
 import '../../utils/strings.dart';
@@ -179,11 +182,47 @@ class _SignUpState extends State<SignUp> {
       if (!currentFocus.hasPrimaryFocus) {
         currentFocus.unfocus();
       }
+      _signUpApiCall(
+        name: _nameController.text.trim(),
+        email: _emailController.text.trim(),
+        phone: _phoneController.text.trim(),
+        password: _passController.text.trim(),
+      );
     }
   }
 
   void goToLogIn() {
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (builder) => const LogIn()));
+  }
+
+  void _signUpApiCall({
+    String? name,
+    String? email,
+    String? phone,
+    String? password,
+  }) async {
+    ApiResponseModel? response = await AuthApi().callRegistrationAPI(
+      name: name,
+      email: email,
+      phone: phone,
+      password: password,
+    );
+
+    if (response.statusCode == 201) {
+      CustomSnackBar(
+        message: "Registration successful !!!",
+        context: context,
+        isSuccess: true,
+      ).show();
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (builder) => const LogIn()));
+    } else {
+      CustomSnackBar(
+        message: response.message,
+        context: context,
+        isSuccess: false,
+      ).show();
+    }
   }
 }

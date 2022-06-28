@@ -170,13 +170,16 @@ class _LogInState extends State<LogIn> {
 
   void _logInApiCall({String? email, String? password}) async {
     ApiResponseModel? response =
-        await AuthApi().callLoginAPi(email: email, password: password);
+        await AuthApi().callLoginAPI(email: email, password: password);
 
     if (response.statusCode == 200) {
       CustomSnackBar(
-              message: "Log in successful !!!", context: context, isSuccess: true)
+              message: "Log in successful !!!",
+              context: context,
+              isSuccess: true)
           .show();
-Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (builder)=>const HomePage()));
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (builder) => const HomePage()));
     } else {
       CustomSnackBar(
               message: response.message, context: context, isSuccess: false)
