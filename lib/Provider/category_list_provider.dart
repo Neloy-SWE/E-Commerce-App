@@ -10,7 +10,7 @@ import '../components/custom_snackbar.dart';
 
 final categoryListProvider =
     Provider<GetCategoryList?>((ref) => GetCategoryList());
-final mechanicsListFuture = FutureProvider.autoDispose
+final categoryListFuture = FutureProvider.autoDispose
     .family<CategoryListModel?, BuildContext>((ref, context) async {
   final repository = ref.watch(categoryListProvider);
   return repository!.callGetCategoryListApi(context: context);

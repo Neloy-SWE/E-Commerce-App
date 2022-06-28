@@ -18,7 +18,7 @@ class CustomSnackBar {
     ScaffoldMessenger.of(context!)
       ..hideCurrentSnackBar()
       ..showSnackBar(SnackBar(
-        duration: const Duration(seconds: 1),
+        duration: const Duration(seconds: 30),
         margin:
             EdgeInsets.only(bottom: MediaQuery.of(context!).size.height * 0.85),
         behavior: SnackBarBehavior.floating,

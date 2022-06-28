@@ -24,4 +24,5 @@ class AllText {
   static const String netError = "Network Error !";
   static const String somethingWrong = "Something went wrong !";
   static const String productCategory = "Product Category";
+  static const String ops = "OPS !";
 }

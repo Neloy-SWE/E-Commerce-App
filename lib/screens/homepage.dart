@@ -1,58 +1,89 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:my_ecommerce/Provider/category_list_provider.dart';
 import 'package:my_ecommerce/utils/colors.dart';
 
+import '../components/custom_circular_progressbar.dart';
+import '../components/data_not_found.dart';
 import '../components/grid_view_fixed_height.dart';
+import '../model/category_list_model.dart';
 import '../utils/constants.dart';
 import '../utils/strings.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends ConsumerStatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  ConsumerState<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends ConsumerState<HomePage> {
+  int totalCategory = 0;
+
+  Future<void> _refreshCategory() async {
+    ref.refresh(categoryListProvider);
+  }
+
+  @override
+  void initState() {
+    ref.read(categoryListFuture(context));
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final categoryValue = ref.watch(categoryListFuture(context));
+    if (categoryValue.value != null && categoryValue.value!.data != null) {
+      totalCategory = categoryValue.value!.data!.isEmpty
+          ? 0
+          : categoryValue.value!.data!.length;
+    }
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(),
-      body: ListView(
-        padding: Constants.paddingAll15,
-        children: [
-          // simple banner
-          Image.asset("assets/images/banner.png"),
-          Constants.gapH15,
+      body: RefreshIndicator(
+        onRefresh: _refreshCategory,
+        child: ListView(
+          padding: Constants.paddingAll15,
+          children: [
+            // simple banner
+            Image.asset("assets/images/banner.png"),
+            Constants.gapH15,
 
-          // title of the page
-          Text(
-            AllText.productCategory,
-            style: Theme.of(context).textTheme.headline3,
-          ),
-          Constants.gapH30,
-
-          GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const GridViewFixedHeight(
-              crossAxisCount: 2,
-              // childAspectRatio: 0.60,
-              height: 210,
-              crossAxisSpacing: 15,
-              mainAxisSpacing: 15,
+            // title of the page
+            Text(
+              AllText.productCategory,
+              style: Theme.of(context).textTheme.headline3,
             ),
-            itemCount: 5,
-            itemBuilder: (context, index) {
-              return _categoryCard();
-            },
-          ),
-        ],
+            Constants.gapH30,
+
+            categoryValue.when(
+                data: (data) => GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate: const GridViewFixedHeight(
+                        crossAxisCount: 2,
+                        // childAspectRatio: 0.60,
+                        height: 210,
+                        crossAxisSpacing: 15,
+                        mainAxisSpacing: 15,
+                      ),
+                      itemCount: data!.data!.length,
+                      itemBuilder: (context, index) {
+                        return _categoryCard(data: data.data![index]);
+                      },
+                    ),
+                error: (err, stack) => DataNotFoundPage(
+                      massage: err.toString(),
+                    ),
+                loading: () => const Center(child: CustomCircularProgress())),
+          ],
+        ),
       ),
     );
   }
 
-  Widget _categoryCard() {
+  Widget _categoryCard({required CategoryListData data}) {
     return GestureDetector(
       onTap: () {},
       child: Container(
@@ -94,7 +125,7 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    "Name: Category 1 asdf as dfasdf",
+                    "Name: ${data.name}",
                     textAlign: TextAlign.center,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context)

@@ -7,7 +7,7 @@ class CategoryListModel {
   });
 
   final bool? status;
-  final List<Datum>? data;
+  final List<CategoryListData>? data;
 
   factory CategoryListModel.fromJson(String str) =>
       CategoryListModel.fromMap(json.decode(str));
@@ -19,7 +19,7 @@ class CategoryListModel {
         status: json["status"] == null ? null : json["status"],
         data: json["data"] == null
             ? null
-            : List<Datum>.from(json["data"].map((x) => Datum.fromMap(x))),
+            : List<CategoryListData>.from(json["data"].map((x) => CategoryListData.fromMap(x))),
       );
 
   Map<String, dynamic> toMap() => {
@@ -30,8 +30,8 @@ class CategoryListModel {
       };
 }
 
-class Datum {
-  Datum({
+class CategoryListData {
+  CategoryListData({
     this.id,
     this.name,
     this.businessId,
@@ -59,11 +59,11 @@ class Datum {
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
-  factory Datum.fromJson(String str) => Datum.fromMap(json.decode(str));
+  factory CategoryListData.fromJson(String str) => CategoryListData.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory Datum.fromMap(Map<String, dynamic> json) => Datum(
+  factory CategoryListData.fromMap(Map<String, dynamic> json) => CategoryListData(
         id: json["id"] == null ? null : json["id"],
         name: json["name"] == null ? null : json["name"],
         businessId: json["business_id"] == null ? null : json["business_id"],
