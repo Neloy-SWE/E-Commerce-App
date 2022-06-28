@@ -22,4 +22,5 @@ class AllText {
   static const String phone = "Phone";
   static const String phoneHint = "017...";
   static const String netError = "Network Error !";
+  static const String productCategory = "Product Category";
 }

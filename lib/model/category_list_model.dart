@@ -1,0 +1,127 @@
+// To parse this JSON data, do
+//
+//     final productListModel = productListModelFromMap(jsonString);
+
+import 'dart:convert';
+
+class CategoryListModel {
+  CategoryListModel({
+    this.status,
+    this.data,
+  });
+
+  final bool? status;
+  final List<Datum>? data;
+
+  factory CategoryListModel.fromJson(String str) =>
+      CategoryListModel.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory CategoryListModel.fromMap(Map<String, dynamic> json) =>
+      CategoryListModel(
+        status: json["status"] == null ? null : json["status"],
+        data: json["data"] == null
+            ? null
+            : List<Datum>.from(json["data"].map((x) => Datum.fromMap(x))),
+      );
+
+  Map<String, dynamic> toMap() => {
+        "status": status == null ? null : status,
+        "data": data == null
+            ? null
+            : List<dynamic>.from(data!.map((x) => x.toMap())),
+      };
+}
+
+class Datum {
+  Datum({
+    this.id,
+    this.name,
+    this.businessId,
+    this.shortCode,
+    this.parentId,
+    this.createdBy,
+    this.categoryType,
+    this.description,
+    this.slug,
+    this.deletedAt,
+    this.createdAt,
+    this.updatedAt,
+  });
+
+  final int? id;
+  final String? name;
+  final int? businessId;
+  final String? shortCode;
+  final int? parentId;
+  final int? createdBy;
+  final CategoryType? categoryType;
+  final String? description;
+  final dynamic slug;
+  final DateTime? deletedAt;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+
+  factory Datum.fromJson(String str) => Datum.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory Datum.fromMap(Map<String, dynamic> json) => Datum(
+        id: json["id"] == null ? null : json["id"],
+        name: json["name"] == null ? null : json["name"],
+        businessId: json["business_id"] == null ? null : json["business_id"],
+        shortCode: json["short_code"] == null ? null : json["short_code"],
+        parentId: json["parent_id"] == null ? null : json["parent_id"],
+        createdBy: json["created_by"] == null ? null : json["created_by"],
+        categoryType: json["category_type"] == null
+            ? null
+            : categoryTypeValues.map[json["category_type"]],
+        description: json["description"] == null ? null : json["description"],
+        slug: json["slug"],
+        deletedAt: json["deleted_at"] == null
+            ? null
+            : DateTime.parse(json["deleted_at"]),
+        createdAt: json["created_at"] == null
+            ? null
+            : DateTime.parse(json["created_at"]),
+        updatedAt: json["updated_at"] == null
+            ? null
+            : DateTime.parse(json["updated_at"]),
+      );
+
+  Map<String, dynamic> toMap() => {
+        "id": id == null ? null : id,
+        "name": name == null ? null : name,
+        "business_id": businessId == null ? null : businessId,
+        "short_code": shortCode == null ? null : shortCode,
+        "parent_id": parentId == null ? null : parentId,
+        "created_by": createdBy == null ? null : createdBy,
+        "category_type": categoryType == null
+            ? null
+            : categoryTypeValues.reverse[categoryType],
+        "description": description == null ? null : description,
+        "slug": slug,
+        "deleted_at": deletedAt == null ? null : deletedAt!.toIso8601String(),
+        "created_at": createdAt == null ? null : createdAt!.toIso8601String(),
+        "updated_at": updatedAt == null ? null : updatedAt!.toIso8601String(),
+      };
+}
+
+enum CategoryType { PRODUCT }
+
+final categoryTypeValues = EnumValues({"product": CategoryType.PRODUCT});
+
+class EnumValues<T> {
+  Map<String, T> map;
+  Map<T, String>? reverseMap;
+
+  EnumValues(this.map);
+
+  Map<T, String> get reverse {
+    if (reverseMap == null) {
+      reverseMap = map.map((k, v) => new MapEntry(v, k));
+    }
+    return reverseMap!;
+  }
+}
