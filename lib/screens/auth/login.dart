@@ -5,7 +5,11 @@ import 'package:my_ecommerce/screens/auth/signup.dart';
 import 'package:my_ecommerce/utils/constants.dart';
 import 'package:my_ecommerce/utils/strings.dart';
 
+import '../../api/api_response.dart';
+import '../../api/auth_api.dart';
+import '../../components/custom_snackbar.dart';
 import '../../utils/colors.dart';
+import '../homepage.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({Key? key}) : super(key: key);
@@ -152,11 +156,31 @@ class _LogInState extends State<LogIn> {
       if (!currentFocus.hasPrimaryFocus) {
         currentFocus.unfocus();
       }
+      _logInApiCall(
+        email: _emailController.text.trim(),
+        password: _passController.text.trim(),
+      );
     }
   }
 
   void goToSignUp() {
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (builder) => const SignUp()));
+  }
+
+  void _logInApiCall({String? email, String? password}) async {
+    ApiResponseModel? response =
+        await AuthApi().callLoginAPi(email: email, password: password);
+
+    if (response.statusCode == 200) {
+      CustomSnackBar(
+              message: "Log in successful !!!", context: context, isSuccess: true)
+          .show();
+Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (builder)=>const HomePage()));
+    } else {
+      CustomSnackBar(
+              message: response.message, context: context, isSuccess: false)
+          .show();
+    }
   }
 }
