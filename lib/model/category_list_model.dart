@@ -3,11 +3,11 @@ import 'dart:convert';
 class CategoryListModel {
   CategoryListModel({
     this.status,
-    this.data,
+    this.categoryListData,
   });
 
   final bool? status;
-  final List<CategoryListData>? data;
+  final List<CategoryListData>? categoryListData;
 
   factory CategoryListModel.fromJson(String str) =>
       CategoryListModel.fromMap(json.decode(str));
@@ -17,16 +17,16 @@ class CategoryListModel {
   factory CategoryListModel.fromMap(Map<String, dynamic> json) =>
       CategoryListModel(
         status: json["status"] == null ? null : json["status"],
-        data: json["data"] == null
+        categoryListData: json["data"] == null
             ? null
             : List<CategoryListData>.from(json["data"].map((x) => CategoryListData.fromMap(x))),
       );
 
   Map<String, dynamic> toMap() => {
         "status": status == null ? null : status,
-        "data": data == null
+        "data": categoryListData == null
             ? null
-            : List<dynamic>.from(data!.map((x) => x.toMap())),
+            : List<dynamic>.from(categoryListData!.map((x) => x.toMap())),
       };
 }
 

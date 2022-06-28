@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_ecommerce/Provider/category_list_provider.dart';
 import 'package:my_ecommerce/utils/colors.dart';
-
+import '../Provider/category_wise_product_list_provider.dart';
 import '../components/custom_circular_progressbar.dart';
 import '../components/data_not_found.dart';
 import '../components/grid_view_fixed_height.dart';
@@ -19,6 +19,7 @@ class HomePage extends ConsumerStatefulWidget {
 
 class _HomePageState extends ConsumerState<HomePage> {
   int totalCategory = 0;
+  int length = 0;
 
   Future<void> _refreshCategory() async {
     ref.refresh(categoryListProvider);
@@ -26,17 +27,32 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   @override
   void initState() {
-    ref.read(categoryListFuture(context));
+    ref.read(
+      categoryListFuture(
+        context,
+      ),
+    );
     super.initState();
+
+    ref.read(
+      categoryWiseProductListFuture(
+        0.toString(),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    final categoryValue = ref.watch(categoryListFuture(context));
-    if (categoryValue.value != null && categoryValue.value!.data != null) {
-      totalCategory = categoryValue.value!.data!.isEmpty
+    final categoryValue = ref.watch(
+      categoryListFuture(
+        context,
+      ),
+    );
+    if (categoryValue.value != null &&
+        categoryValue.value!.categoryListData != null) {
+      totalCategory = categoryValue.value!.categoryListData!.isEmpty
           ? 0
-          : categoryValue.value!.data!.length;
+          : categoryValue.value!.categoryListData!.length;
     }
     return Scaffold(
       resizeToAvoidBottomInset: true,
@@ -53,12 +69,16 @@ class _HomePageState extends ConsumerState<HomePage> {
             // title of the page
             Text(
               AllText.productCategory,
-              style: Theme.of(context).textTheme.headline3,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .headline3,
             ),
             Constants.gapH30,
 
             categoryValue.when(
-                data: (data) => GridView.builder(
+                data: (data) =>
+                    GridView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       gridDelegate: const GridViewFixedHeight(
@@ -68,12 +88,14 @@ class _HomePageState extends ConsumerState<HomePage> {
                         crossAxisSpacing: 15,
                         mainAxisSpacing: 15,
                       ),
-                      itemCount: data!.data!.length,
+                      itemCount: data!.categoryListData!.length,
                       itemBuilder: (context, index) {
-                        return _categoryCard(data: data.data![index]);
+                        return _categoryCard(
+                            data: data.categoryListData![index]);
                       },
                     ),
-                error: (err, stack) => DataNotFoundPage(
+                error: (err, stack) =>
+                    DataNotFoundPage(
                       massage: err.toString(),
                     ),
                 loading: () => const Center(child: CustomCircularProgress())),
@@ -84,6 +106,14 @@ class _HomePageState extends ConsumerState<HomePage> {
   }
 
   Widget _categoryCard({required CategoryListData data}) {
+    final lengthValue = ref.watch(
+        categoryWiseProductListFuture(data.id.toString()));
+    if (lengthValue.value?.categoryWiseProductListData != null &&
+        lengthValue.value != null) {
+      length =
+      lengthValue.value!.categoryWiseProductListData!.isEmpty ? 0 : lengthValue
+          .value!.categoryWiseProductListData!.length;
+    }
     return GestureDetector(
       onTap: () {},
       child: Container(
@@ -128,16 +158,18 @@ class _HomePageState extends ConsumerState<HomePage> {
                     "Name: ${data.name}",
                     textAlign: TextAlign.center,
                     overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context)
+                    style: Theme
+                        .of(context)
                         .textTheme
                         .headline5!
                         .copyWith(color: Colors.white),
                   ),
                   Constants.gapH10,
                   Text(
-                    "total product: 10",
+                    "total product: $length",
                     textAlign: TextAlign.center,
-                    style: Theme.of(context)
+                    style: Theme
+                        .of(context)
                         .textTheme
                         .headline5!
                         .copyWith(color: Colors.white),
