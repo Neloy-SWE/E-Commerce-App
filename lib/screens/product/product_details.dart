@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_ecommerce/components/all_button.dart';
+import 'package:my_ecommerce/screens/cart.dart';
 import 'package:my_ecommerce/utils/colors.dart';
 import 'package:my_ecommerce/utils/strings.dart';
 
@@ -28,7 +29,6 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
 
   String name = "";
   String price = "";
-  int stock = 0;
 
   Future<void> _refreshProductDetails() async {
     ref.refresh(productDetailsProvider);
@@ -58,8 +58,6 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
       price = productDetailsValue.value!.productDetailsData!.price!.isNotEmpty
           ? productDetailsValue.value!.productDetailsData!.price!
           : "N/A";
-
-      stock = productDetailsValue.value!.productDetailsData!.enableStock!;
     }
     return Scaffold(
       endDrawer: const CustomDrawer(),
@@ -75,13 +73,18 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
           children: [
             Constants.gapW150,
             ActionIcon.customIcon(
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (builder) => const Cart(),
+                    ),
+                  );
+                },
                 icon: Icons.shopping_bag_outlined,
-                count: "9+",
+                count: "0",
                 context: context),
           ],
         ),
-
         elevation: 5,
         shadowColor: AllColor.shadowColor,
       ),
@@ -112,13 +115,6 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
             Text(
               "BDT $price /-",
               style: Theme.of(context).textTheme.headline5,
-            ),
-            Constants.gapH10,
-
-            // available product
-            Text(
-              "Available product: $stock",
-              style: Theme.of(context).textTheme.bodyText1,
             ),
             Constants.gapH30,
 

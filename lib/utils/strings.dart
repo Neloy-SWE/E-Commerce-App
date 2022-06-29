@@ -33,4 +33,5 @@ class AllText {
   static const String edit = "EDIT";
   static const String gallery = "Gallery";
   static const String camera = "Camera";
+  static const String cart = "Cart";
 }
