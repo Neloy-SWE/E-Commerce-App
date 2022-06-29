@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_ecommerce/Provider/category_list_provider.dart';
+import 'package:my_ecommerce/screens/product/product_list.dart';
 import 'package:my_ecommerce/utils/colors.dart';
 import '../Provider/category_wise_product_list_provider.dart';
 import '../components/custom_circular_progressbar.dart';
@@ -19,7 +20,6 @@ class HomePage extends ConsumerStatefulWidget {
 
 class _HomePageState extends ConsumerState<HomePage> {
   int totalCategory = 0;
-  int length = 0;
 
   Future<void> _refreshCategory() async {
     ref.refresh(categoryListProvider);
@@ -27,18 +27,19 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   @override
   void initState() {
+
     ref.read(
       categoryListFuture(
         context,
       ),
     );
-    super.initState();
 
     ref.read(
       categoryWiseProductListFuture(
         0.toString(),
       ),
     );
+    super.initState();
   }
 
   @override
@@ -59,6 +60,7 @@ class _HomePageState extends ConsumerState<HomePage> {
       appBar: AppBar(),
       body: RefreshIndicator(
         onRefresh: _refreshCategory,
+        color: AllColor.primaryColor,
         child: ListView(
           padding: Constants.paddingAll15,
           children: [
@@ -69,36 +71,33 @@ class _HomePageState extends ConsumerState<HomePage> {
             // title of the page
             Text(
               AllText.productCategory,
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .headline3,
+              style: Theme.of(context).textTheme.headline3,
             ),
             Constants.gapH30,
 
             categoryValue.when(
-                data: (data) =>
-                    GridView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      gridDelegate: const GridViewFixedHeight(
-                        crossAxisCount: 2,
-                        // childAspectRatio: 0.60,
-                        height: 210,
-                        crossAxisSpacing: 15,
-                        mainAxisSpacing: 15,
-                      ),
-                      itemCount: data!.categoryListData!.length,
-                      itemBuilder: (context, index) {
-                        return _categoryCard(
-                            data: data.categoryListData![index]);
-                      },
-                    ),
-                error: (err, stack) =>
-                    DataNotFoundPage(
-                      massage: err.toString(),
-                    ),
-                loading: () => const Center(child: CustomCircularProgress())),
+              data: (data) => GridView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const GridViewFixedHeight(
+                  crossAxisCount: 2,
+                  // childAspectRatio: 0.60,
+                  height: 210,
+                  crossAxisSpacing: 15,
+                  mainAxisSpacing: 15,
+                ),
+                itemCount: data!.categoryListData!.length,
+                itemBuilder: (context, index) {
+                  return _categoryCard(data: data.categoryListData![index]);
+                },
+              ),
+              error: (err, stack) => DataNotFoundPage(
+                massage: err.toString(),
+              ),
+              loading: () => const Center(
+                child: CustomCircularProgress(),
+              ),
+            ),
           ],
         ),
       ),
@@ -106,16 +105,24 @@ class _HomePageState extends ConsumerState<HomePage> {
   }
 
   Widget _categoryCard({required CategoryListData data}) {
-    final lengthValue = ref.watch(
-        categoryWiseProductListFuture(data.id.toString()));
+    int length = 0;
+    final lengthValue =
+        ref.watch(categoryWiseProductListFuture(data.id.toString()));
     if (lengthValue.value?.categoryWiseProductListData != null &&
         lengthValue.value != null) {
-      length =
-      lengthValue.value!.categoryWiseProductListData!.isEmpty ? 0 : lengthValue
-          .value!.categoryWiseProductListData!.length;
+      length = lengthValue.value!.categoryWiseProductListData!.isEmpty
+          ? 0
+          : lengthValue.value!.categoryWiseProductListData!.length;
     }
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (builder) => ProductList(
+                  categoryId: data.id.toString(),
+                  categoryName: data.name!,
+                  totalProduct: length,
+                )));
+      },
       child: Container(
         height: 210,
         decoration: const BoxDecoration(
@@ -158,8 +165,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                     "Name: ${data.name}",
                     textAlign: TextAlign.center,
                     overflow: TextOverflow.ellipsis,
-                    style: Theme
-                        .of(context)
+                    style: Theme.of(context)
                         .textTheme
                         .headline5!
                         .copyWith(color: Colors.white),
@@ -168,8 +174,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                   Text(
                     "total product: $length",
                     textAlign: TextAlign.center,
-                    style: Theme
-                        .of(context)
+                    style: Theme.of(context)
                         .textTheme
                         .headline5!
                         .copyWith(color: Colors.white),

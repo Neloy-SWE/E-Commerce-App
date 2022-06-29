@@ -9,11 +9,20 @@ class AppTheme {
 
     // app bar
     appBarTheme: const AppBarTheme(
+      iconTheme: IconThemeData(
+        color: Colors.black,
+      ),
       elevation: 0,
       color: Colors.white,
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.dark,
+      ),
+      centerTitle: true,
+      titleTextStyle: TextStyle(
+        fontFamily: AllText.bold,
+        fontSize: 25,
+        color: Colors.black,
       ),
     ),
 
@@ -53,6 +62,11 @@ class AppTheme {
         fontFamily: AllText.bold,
         fontSize: 15,
         color: AllColor.primaryColor,
+      ),
+      headline6: TextStyle(
+        fontFamily: AllText.bold,
+        fontSize: 15,
+        color: Colors.black,
       ),
     ),
     colorScheme:

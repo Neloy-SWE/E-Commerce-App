@@ -16,3 +16,6 @@ https://undraw.co/
 
 ## Font
 https://fonts.google.com/specimen/Barlow?query=barlow
+
+## Design a simple banner using:
+https://www.canva.com/

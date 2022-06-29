@@ -25,4 +25,6 @@ class AllText {
   static const String somethingWrong = "Something went wrong !";
   static const String productCategory = "Product Category";
   static const String ops = "OPS !";
+  static const String noAvailableProduct = "No Available Product";
+  static const String totalAvailableProduct = "Total Available Products: ";
 }

@@ -27,11 +27,7 @@ class GetCategoryList {
       if (response.statusCode == 200) {
         return CategoryListModel.fromJson(str);
       } else {
-        CustomSnackBar(
-          context: context,
-          isSuccess: false,
-          message: AllText.somethingWrong,
-        );
+
         return null;
       }
     } catch (e) {
