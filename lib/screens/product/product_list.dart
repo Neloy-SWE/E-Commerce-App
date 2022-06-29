@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_ecommerce/model/category_wise_product_list_model.dart';
@@ -7,6 +8,7 @@ import 'package:my_ecommerce/utils/strings.dart';
 
 import '../../Provider/category_wise_product_list_provider.dart';
 import '../../components/custom_circular_progressbar.dart';
+import '../../components/custom_drawer.dart';
 import '../../components/data_not_found.dart';
 import '../../utils/constants.dart';
 
@@ -53,7 +55,15 @@ class _ProductListState extends ConsumerState<ProductList> {
     );
 
     return Scaffold(
+      endDrawer: const CustomDrawer(),
+
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: (){
+            Navigator.of(context).pop();
+          },
+          icon: const Icon(CupertinoIcons.left_chevron),
+        ),
         title: Text(widget.categoryName),
       ),
       body: widget.totalProduct == 0

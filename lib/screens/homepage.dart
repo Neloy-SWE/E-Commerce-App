@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_ecommerce/Provider/category_list_provider.dart';
+import 'package:my_ecommerce/components/custom_drawer.dart';
 import 'package:my_ecommerce/screens/product/product_list.dart';
 import 'package:my_ecommerce/utils/colors.dart';
 import '../Provider/category_wise_product_list_provider.dart';
@@ -58,6 +59,7 @@ class _HomePageState extends ConsumerState<HomePage> {
     }
     return Scaffold(
       resizeToAvoidBottomInset: true,
+      endDrawer: const CustomDrawer(),
       appBar: AppBar(),
       body: RefreshIndicator(
         onRefresh: _refreshCategory,

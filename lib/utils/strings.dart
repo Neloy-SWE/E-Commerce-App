@@ -28,4 +28,5 @@ class AllText {
   static const String noAvailableProduct = "No Available Product";
   static const String totalAvailableProduct = "Total Available Products: ";
   static const String addToCartCap = "ADD TO CART";
+  static const String myProfile = "My Profile";
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_ecommerce/components/buttons/general_button.dart';
@@ -5,6 +6,8 @@ import 'package:my_ecommerce/utils/colors.dart';
 import 'package:my_ecommerce/utils/strings.dart';
 
 import '../../Provider/product_details_provider.dart';
+import '../../components/action_icon.dart';
+import '../../components/custom_drawer.dart';
 import '../../utils/constants.dart';
 
 class ProductDetails extends ConsumerStatefulWidget {
@@ -59,7 +62,26 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
       stock = productDetailsValue.value!.productDetailsData!.enableStock!;
     }
     return Scaffold(
+      endDrawer: const CustomDrawer(),
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: const Icon(CupertinoIcons.left_chevron),
+        ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Constants.gapW150,
+            ActionIcon.customIcon(
+                onTap: () {},
+                icon: Icons.shopping_bag_outlined,
+                count: "9+",
+                context: context),
+          ],
+        ),
+
         elevation: 5,
         shadowColor: AllColor.shadowColor,
       ),
