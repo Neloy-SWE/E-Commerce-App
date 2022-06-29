@@ -23,6 +23,7 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   Future<void> _refreshCategory() async {
     ref.refresh(categoryListProvider);
+    ref.refresh(categoryWiseProductListProvider);
   }
 
   @override
