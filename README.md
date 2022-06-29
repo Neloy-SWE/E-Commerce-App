@@ -19,7 +19,6 @@ This is a demo e-commerce app.
 2. flutter_riverpod: ^1.0.4 (For state management)
 3. http: ^0.13.4 (For http request)
 4. image_picker: ^0.8.5+3 (For edit profile image)
-5. equatable: ^2.0.3
 
 ## Image Source
 https://undraw.co/
