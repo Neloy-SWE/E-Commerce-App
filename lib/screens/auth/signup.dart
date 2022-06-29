@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../api/api_response.dart';
 import '../../api/auth_api.dart';
 import '../../components/all_input.dart';
-import '../../components/buttons/general_button.dart';
+import '../../components/all_button.dart';
 import '../../components/custom_snackbar.dart';
 import '../../utils/colors.dart';
 import '../../utils/constants.dart';

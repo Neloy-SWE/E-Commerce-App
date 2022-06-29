@@ -16,7 +16,7 @@ class AuthApi {
     try {
       var headers = {ApiConstant.contentType: ApiConstant.acceptValue};
       var request =
-          http.Request('POST', Uri.parse('${ApiConstant.baseUrl}auth/login'));
+      http.Request('POST', Uri.parse('${ApiConstant.baseUrl}auth/login'));
       request.body = json.encode({
         "email": email,
         "password": password,
@@ -83,8 +83,38 @@ class AuthApi {
       );
     }
   }
-}
 
+  Future<ApiResponseModel> callLogoutAPI() async {
+    try {
+      String userToken =
+      await LocalStorageManager.readData(ApiConstant.userLoginToken);
+      var headers = {ApiConstant.authorization: 'Bearer $userToken'};
+      var request =
+      http.Request('POST', Uri.parse('${ApiConstant.baseUrl}auth/logout'));
+
+      request.headers.addAll(headers);
+
+      http.StreamedResponse response = await request.send();
+      var str = await response.stream.bytesToString();
+      if (response.statusCode == 200) {
+        sharedPreference(LoginModel.fromJson(str));
+
+        return ApiResponseModel(
+            statusCode: response.statusCode,
+            message: jsonDecode(str)["message"]);
+      } else {
+        return ApiResponseModel(
+            statusCode: response.statusCode, message: AllText.somethingWrong);
+      }
+    } catch (e) {
+      //  print("Hello error Error: $e");
+      return ApiResponseModel(
+        statusCode: 404,
+        message: AllText.netError,
+      );
+    }
+  }
+}
 //save data at shared preference
 sharedPreference(LoginModel user) {
   //print('Token: ${user.accessToken}');

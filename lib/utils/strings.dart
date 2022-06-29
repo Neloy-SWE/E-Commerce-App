@@ -29,4 +29,8 @@ class AllText {
   static const String totalAvailableProduct = "Total Available Products: ";
   static const String addToCartCap = "ADD TO CART";
   static const String myProfile = "My Profile";
+  static const String logoutCap = "LOGOUT";
+  static const String edit = "EDIT";
+  static const String gallery = "Gallery";
+  static const String camera = "Camera";
 }

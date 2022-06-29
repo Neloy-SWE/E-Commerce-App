@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_ecommerce/components/buttons/general_button.dart';
+import 'package:my_ecommerce/components/all_button.dart';
 import 'package:my_ecommerce/utils/colors.dart';
 import 'package:my_ecommerce/utils/strings.dart';
 

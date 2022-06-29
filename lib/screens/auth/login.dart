@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_ecommerce/components/all_input.dart';
-import 'package:my_ecommerce/components/buttons/general_button.dart';
+import 'package:my_ecommerce/components/all_button.dart';
 import 'package:my_ecommerce/screens/auth/signup.dart';
 import 'package:my_ecommerce/utils/constants.dart';
 import 'package:my_ecommerce/utils/strings.dart';
