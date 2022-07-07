@@ -2,13 +2,12 @@
 This is a demo e-commerce app.
 
 ## Features:
-1. Login.
-2. Sign up.
-3. Show product category.
-4. Category wise product list.
-5. Product details.
-6. Add to cart.
-7. Profile section.
+1. Authentication.
+2. Show product category.
+3. Category wise product list.
+4. Product details.
+5. Add to cart.
+6. Profile section.
 
 ## Technologies:
 1. Dart programming language.
@@ -31,6 +30,6 @@ https://www.canva.com/
 
 ## API resources: 
 https://documenter.getpostman.com/view/5909130/UzBsH4mm
-host: https://ecom.grapfood.com/api/
+host: https://grapfood.jony.life/api/
 
 

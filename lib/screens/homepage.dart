@@ -29,11 +29,8 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   @override
   void initState() {
-
     ref.read(
-      categoryListFuture(
-        context,
-      ),
+      categoryListFuture,
     );
 
     ref.read(
@@ -47,9 +44,7 @@ class _HomePageState extends ConsumerState<HomePage> {
   @override
   Widget build(BuildContext context) {
     final categoryValue = ref.watch(
-      categoryListFuture(
-        context,
-      ),
+      categoryListFuture,
     );
     if (categoryValue.value != null &&
         categoryValue.value!.categoryListData != null) {

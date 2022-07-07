@@ -3,22 +3,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_ecommerce/api/api_constant_data.dart';
 import 'package:my_ecommerce/model/category_list_model.dart';
-import 'package:my_ecommerce/utils/strings.dart';
-import '../components/custom_snackbar.dart';
 
 // category list
 
 final categoryListProvider =
     Provider<GetCategoryList?>((ref) => GetCategoryList());
-final categoryListFuture = FutureProvider.autoDispose
-    .family<CategoryListModel?, BuildContext>((ref, context) async {
+final categoryListFuture = FutureProvider.autoDispose<CategoryListModel?>((ref) async {
   final repository = ref.watch(categoryListProvider);
-  return repository!.callGetCategoryListApi(context: context);
+  return repository!.callGetCategoryListApi();
 });
 
 class GetCategoryList {
-  Future<CategoryListModel?> callGetCategoryListApi(
-      {required BuildContext context}) async {
+  Future<CategoryListModel?> callGetCategoryListApi() async {
     try {
       var request =
           http.Request('GET', Uri.parse('${ApiConstant.baseUrl}category'));
@@ -31,11 +27,6 @@ class GetCategoryList {
         return null;
       }
     } catch (e) {
-      CustomSnackBar(
-        context: context,
-        isSuccess: false,
-        message: AllText.netError,
-      );
       return null;
     }
   }
