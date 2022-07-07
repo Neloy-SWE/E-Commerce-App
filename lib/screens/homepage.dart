@@ -20,7 +20,7 @@ class HomePage extends ConsumerStatefulWidget {
 }
 
 class _HomePageState extends ConsumerState<HomePage> {
-  int totalCategory = 0;
+ // int totalCategory = 0;
 
   Future<void> _refreshCategory() async {
     ref.refresh(categoryListProvider);
@@ -46,12 +46,12 @@ class _HomePageState extends ConsumerState<HomePage> {
     final categoryValue = ref.watch(
       categoryListFuture,
     );
-    if (categoryValue.value != null &&
+/*    if (categoryValue.value != null &&
         categoryValue.value!.categoryListData != null) {
       totalCategory = categoryValue.value!.categoryListData!.isEmpty
           ? 0
           : categoryValue.value!.categoryListData!.length;
-    }
+    }*/
     return Scaffold(
       resizeToAvoidBottomInset: true,
       endDrawer: const CustomDrawer(),
