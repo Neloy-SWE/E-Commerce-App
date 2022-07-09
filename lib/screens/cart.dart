@@ -45,122 +45,133 @@ class _CartState extends State<Cart> {
           ),
           Constants.gapH30,
 
-          // items
-          Container(
-            padding: Constants.paddingAll15,
-            width: double.infinity,
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.all(
-                Radius.circular(10),
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black12,
-                  spreadRadius: 2,
-                  blurRadius: 5,
-                  blurStyle: BlurStyle.outer,
-                )
-              ],
+          // item card
+          _itemCard(),
+          _itemCard(),
+          _itemCard(),
+
+        ],
+      ),
+    );
+  }
+  Widget _itemCard(){
+    return Column(
+      children: [
+        Container(
+          padding: Constants.paddingAll15,
+          width: double.infinity,
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(
+              Radius.circular(10),
             ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // product image
-                Container(
-                  height: 80,
-                  width: 80,
-                  decoration: BoxDecoration(
-                    color: AllColor.primaryColor,
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(7),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black12,
+                spreadRadius: 2,
+                blurRadius: 5,
+                blurStyle: BlurStyle.outer,
+              )
+            ],
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // product image
+              Container(
+                height: 80,
+                width: 80,
+                decoration: BoxDecoration(
+                  color: AllColor.primaryColor,
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(7),
+                  ),
+                  image: DecorationImage(
+                      image: NetworkImage(
+                        imgLink,
+                      ),
+                      fit: BoxFit.fill),
+                ),
+              ),
+              Constants.gapW10,
+
+              // details
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Product Name",
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.headline6!.copyWith(
+                      fontSize: 20,
                     ),
-                    image: DecorationImage(
-                        image: NetworkImage(
-                          imgLink,
-                        ),
-                        fit: BoxFit.fill),
+                  ),
+                  Text(
+                    "BDT 200 /-",
+                    style: Theme.of(context).textTheme.headline5!.copyWith(
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
+              ),
+              Constants.gapW10,
+
+              // counter
+              Container(
+                height: 40,
+                width: 110,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black, width: 0.5),
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(7),
                   ),
                 ),
-                Constants.gapW10,
-
-                // details
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text(
-                      "Product Name",
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.headline6!.copyWith(
-                            fontSize: 20,
-                          ),
+                    InkWell(
+                      onTap: (){
+                        setState((){
+                          if (count>0){
+                            count--;
+                          }
+                        });
+                      },
+                      child: Text(
+                        "-",
+                        style: Theme.of(context).textTheme.headline5!.copyWith(
+                          fontSize: 20,
+                        ),
+                      ),
                     ),
                     Text(
-                      "BDT 200 /-",
+                      "$count",
                       style: Theme.of(context).textTheme.headline5!.copyWith(
-                            fontSize: 12,
-                          ),
+                        fontSize: 12,
+                      ),
+                    ),
+                    InkWell(
+                      onTap: (){
+                        setState((){
+                          count++;
+                        });
+                      },
+                      child: Text(
+                        "+",
+                        style: Theme.of(context).textTheme.headline5!.copyWith(
+                          fontSize: 20,
+                        ),
+                      ),
                     ),
                   ],
                 ),
-                Constants.gapW10,
-
-                //
-                Container(
-                  height: 40,
-                  width: 110,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black, width: 0.5),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(7),
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      InkWell(
-                        onTap: (){
-                          setState((){
-                            if (count>0){
-                              count--;
-                            }
-                          });
-                        },
-                        child: Text(
-                          "-",
-                          style: Theme.of(context).textTheme.headline5!.copyWith(
-                            fontSize: 20,
-                          ),
-                        ),
-                      ),
-                      Text(
-                        "$count",
-                        style: Theme.of(context).textTheme.headline5!.copyWith(
-                          fontSize: 12,
-                        ),
-                      ),
-                      InkWell(
-                        onTap: (){
-                          setState((){
-                              count++;
-                          });
-                        },
-                        child: Text(
-                          "+",
-                          style: Theme.of(context).textTheme.headline5!.copyWith(
-                            fontSize: 20,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+        Constants.gapH10,
+      ],
     );
   }
 }

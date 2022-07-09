@@ -24,9 +24,9 @@ class ProfileSection extends ConsumerStatefulWidget {
 }
 
 class _ProfileSectionState extends ConsumerState<ProfileSection> {
-  String myName = "";
-  String email = "";
-  String phone = "";
+  String myName = "Test Name";
+  String email = "test@gmail.com";
+  String phone = "01766559988";
 
   Future<void> _refreshProfile() async {
     ref.refresh(profileProvider);
@@ -74,11 +74,11 @@ class _ProfileSectionState extends ConsumerState<ProfileSection> {
   Widget build(BuildContext context) {
     final profileValue = ref.watch(profileFuture);
 
-    if (profileValue.value != null) {
+/*    if (profileValue.value != null) {
       myName = profileValue.value!.name!;
       email = profileValue.value!.email!;
       phone = profileValue.value!.phone!;
-    }
+    }*/
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
