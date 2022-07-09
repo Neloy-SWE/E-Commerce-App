@@ -32,4 +32,18 @@ https://www.canva.com/
 https://documenter.getpostman.com/view/5909130/UzBsH4mm
 host: https://grapfood.jony.life/api/
 
+## Screenshots
+<p float="left">
+  <img src="Screenshots/1.splash.jpg" width="200" />
+  <img src="Screenshots/2.login.jpg" width="200" />
+  <img src="Screenshots/3.signup.jpg" width="200" />
+  <img src="Screenshots/4.homepage1.jpg" width="200" />
+  <img src="Screenshots/5.homepage2.jpg" width="200" />
+  <img src="Screenshots/6.noproduct.jpg" width="200" />
+  <img src="Screenshots/7.productlist.jpg" width="200" />
+  <img src="Screenshots/8.productdetails.jpg" width="200" />
+  <img src="Screenshots/9.sidenavbar.jpg" width="200" />
+  <img src="Screenshots/10.cart.jpg" width="200" />
+  <img src="Screenshots/11.profile.jpg" width="200" />
+  <img src="Screenshots/12.profileedit.jpg" width="200" />
 
